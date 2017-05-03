@@ -1,8 +1,17 @@
 var connection = require("./connection.js");
 
 var orm = {
-  selectAll: function(whatToSelect, tableInput) {
-    var queryString = "SELECT ?? FROM ??";
+  selectAllMade: function(whatToSelect, tableInput) {
+    var queryString = "SELECT ?? FROM ?? WHERE bevoured = 0";
+    connection.query(queryString, [whatToSelect, tableInput], function(err, result) {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
+    });
+  },
+  selectAllEaten: function(whatToSelect, tableInput) {
+    var queryString = "SELECT ?? FROM ?? WHERE bevoured = 1";
     connection.query(queryString, [whatToSelect, tableInput], function(err, result) {
       if (err) {
         throw err;

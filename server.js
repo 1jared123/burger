@@ -17,9 +17,10 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+require("./controllers/burgers_controller")(app);
 
 
 
 app.listen(port, function() {
-  console.log("Listening on PORT " + port);
+  console.log("Reactors primed, fire when ready.");
 });

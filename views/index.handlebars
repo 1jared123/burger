@@ -3,11 +3,10 @@
 
 <!-- Pass in data from server.js -->
 <ul>
-  {{#each quotes}}
+  {{#each burgers}}
     <li>
-      <p><span class="label">ID:</span> {{this.id}}</p>
-      <p><span class="label">Quote:</span> {{this.quote}}</p>
-      <p><span class="label">Author:</span> {{this.author}}</p>
+      <p><span class="label">Burger:</span> {{this.burger_name}}</p>
+      <p><span class="label">Author:</span> {{this.date}}</p>
 
       <form action="/{{this.id}}?_method=DELETE" method="POST">
         <input type="hidden" name="id" value="{{this.id}}">
