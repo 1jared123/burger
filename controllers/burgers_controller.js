@@ -10,8 +10,8 @@ module.exports = function(app) {
 });
 
 // add to the people
-//   app.get("/", function(reqest, response) {
-// 	  response.sendFile(path.join(__dirname, "/../public/home.html"));
-// 	});
+  app.post("/:id", function(reqest, response) {
+  	burgers(request.params.id);
+	});
 
 };

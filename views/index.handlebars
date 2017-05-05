@@ -2,21 +2,30 @@
 
 
 <!-- Pass in data from server.js -->
-<ul>
-  {{#each burgers}}
-    <li>
-      <p><span class="label">Burger:</span> {{this.burger_name}}</p>
-      <p><span class="label">Author:</span> {{this.date}}</p>
+<div class="container">
+  <div class="col-md-6"
+      <ul>
+        {{#each burgers}}
+          <li>
+            <p><span class="label">Burger:</span> {{this.burger_name}}</p>
+            <p><span class="label">Author:</span> {{this.date}}</p>
 
-      <form action="/{{this.id}}?_method=DELETE" method="POST">
-        <input type="hidden" name="id" value="{{this.id}}">
-        <button type="submit"><span>Delete</span></button>
-      </form>
+            <form action="/{{this.id}}?_method=DELETE" method="POST">
+              <input type="hidden" name="id" value="{{this.id}}">
+              <button type="submit" id="submit"><span>Eat Burger!</span></button>
+            </form>
 
-      <a href="/{{this.id}}">Update this quote</a>
-    </li>
-  {{/each}}
-</ul>
+            <a href="/{{this.id}}">Update this quote</a>
+          </li>
+        {{/each}}
+      </ul>
+  </div>
+
+  <div class="col-md-6 eaten">
+
+
+  </div>    
+</div>
 
 <h2>Add a Burger</h2>
 
@@ -28,5 +37,5 @@
   </div>
 
 
-  <button type="submit">Add Quote</button>
+  <button type="submit">Add Burger to eat</button>
 </form>

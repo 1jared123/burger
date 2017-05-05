@@ -5,7 +5,7 @@ var methodOverride = require("method-override");
 var app = express();
 var port = 3000;
 
-app.use(express.static(process.cwd() + "/views"));
+app.use(express.static("./public"));
 
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));

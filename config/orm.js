@@ -19,12 +19,12 @@ var orm = {
       console.log(result);
     });
   },
-  insertOne: function(tableInput, colToSearch, valOfCol) {
-    var queryString = "SELECT * FROM ?? WHERE ?? = ?";
+  insertOne: function(tableInput) {
+    var queryString = "INSERT INTO burgers (burger_name) values (?)";
 
     console.log(queryString);
 
-    connection.query(queryString, [tableInput, colToSearch, valOfCol], function(err, result) {
+    connection.query(queryString, [tableInput], function(err, result) {
       console.log(result);
     });
   },
