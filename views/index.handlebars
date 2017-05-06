@@ -10,6 +10,7 @@
 
       <div class="row">
         <div class="col-md-4">
+        <!-- get all uneaten burgers -->
             {{#each burgers}}
               {{#unless this.devoured}}
                     <form action="/{{this.id}}?_method=PUT" method="POST">
@@ -22,6 +23,7 @@
           </div>
 
           <div class="col-md-4">
+          <!-- get all eaten burgers -->
             {{#each burgers}}
                 {{#if this.devoured}}
                     <p class="eaten">{{this.id}}. {{this.burger_name}}</p>
@@ -31,6 +33,7 @@
       </div>
 </div>
 
+<!-- Add a burger -->
 <div class="container main-burger">
     <div class="row">
         <div class="col-md-12">

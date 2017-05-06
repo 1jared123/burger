@@ -1,6 +1,7 @@
 var connection = require("./connection.js");
 
 var orm = {
+  //get all the burgers
   selectAll: function(whatToSelect, cb) {
     var queryString = "SELECT * FROM ??";
     connection.query(queryString, [whatToSelect], function(err, result) {
@@ -11,8 +12,9 @@ var orm = {
       console.log("all The burgers!");
     });
   },
+  //add a burger
   insertOne: function(tableInput, colName, aVal, cb ) {
-    var queryString = "INSERT INTO ?? (?) values (?)";
+    var queryString = "INSERT INTO ?? (??) values (?)";
     connection.query(queryString, [tableInput, colName, aVal], function(err, result) {
       if (err) {
         throw err;
@@ -21,6 +23,7 @@ var orm = {
       console.log("New Burger Added!");
     });
   },
+  // update burger as eaten.
   updateOne: function(tableInput, colName, newInput, idCol, pagesId, cb) {
     var queryString = "UPDATE ?? SET ?? = ? WHERE ??=?";
 
