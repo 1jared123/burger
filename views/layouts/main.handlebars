@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" src="../../public/assets/css/burger_style.css" type="text/css">
     <title>Burgers!!!</title>
 
@@ -13,5 +13,47 @@
     {{{ body }}}
   </body>
 
-  <script type="text/javascript" src=/../models/burger.js></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(document).on("click", "#submit", function(){
+
+        console.log("Clicked!")
+
+        // Form validation
+        function validateForm() {
+          var isValid = true;
+          $('.label').each(function() {
+            if ( $(this).val() === '' )
+                isValid = false;
+          });
+          return isValid;
+        }
+
+        // If all required fields are filled
+        if (validateForm() == true)
+        {
+          // Create an object for the user's data
+            var userData = {
+              name: $("#name").val(),
+            }
+
+
+            // Grab the URL of the website
+            var currentURL = window.location.origin;
+
+            // AJAX post the data to the friends API. 
+            $.post(currentURL + "/", userData, function(data){
+
+
+            });
+        }
+        else
+        { // if no data entered, or not enough, we alert the user and let them know.
+          alert("Add a burger first!!");
+        }
+        
+        return false;
+      });
+    });
+  </script>
 </html>

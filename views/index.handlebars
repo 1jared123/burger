@@ -1,41 +1,47 @@
 <h1>Eat the burger!</h1>
-
-
-<!-- Pass in data from server.js -->
 <div class="container">
-  <div class="col-md-6"
-      <ul>
-        {{#each burgers}}
-          <li>
-            <p><span class="label">Burger:</span> {{this.burger_name}}</p>
-            <p><span class="label">Author:</span> {{this.date}}</p>
+    <div class="row">
+        <img src="/assets/img/hamburger.jpg" height=300px width=350px class="img-fluid col-6-md" alt="burger image">
+        <div class="col-md-12"><h1>All the Burgers!!</h1></div>
+    </div>
 
-            <form action="/{{this.id}}?_method=DELETE" method="POST">
-              <input type="hidden" name="id" value="{{this.id}}">
-              <button type="submit" id="submit"><span>Eat Burger!</span></button>
-            </form>
+      
+      <!-- Pass in data from burger_controller.js -->
 
-            <a href="/{{this.id}}">Update this quote</a>
-          </li>
-        {{/each}}
-      </ul>
-  </div>
+      <div class="row">
+        <div class="col-md-4">
+            {{#each burgers}}
+              {{#unless this.devoured}}
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                        <p class="uneaten">{{this.id}}. {{this.burger_name}} {{ this.date}}
+                        <input type="hidden" name="devoured" value="1">
+                        <button class="btn-primary" type="submit">Eat It!!!</button></p>
+                    </form>
+                {{/unless}}
+            {{/each}}
+          </div>
 
-  <div class="col-md-6 eaten">
-
-
-  </div>    
+          <div class="col-md-4">
+            {{#each burgers}}
+                {{#if this.devoured}}
+                    <p class="eaten">{{this.id}}. {{this.burger_name}}</p>
+                {{/if}}
+            {{/each}}
+          </div>
+      </div>
 </div>
 
-<h2>Add a Burger</h2>
+<div class="container main-burger">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="create-form add-burger" action="/" method="POST">
+                <div class="form-group">
+                    <label for="burger_name">Burger:</label>
+                    <input type="text" id="burger_name" name="burger" placeholder="Bacon Burger">
+                <button type="submit btn-primary">Submit a burger</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-<form class="create-form" action="/" method="POST">
 
-  <div class="form-group">
-    <label for="auth">Type of Burger:</label>
-    <input type="text" id="auth" name="author">
-  </div>
-
-
-  <button type="submit">Add Burger to eat</button>
-</form>

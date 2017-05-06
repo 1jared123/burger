@@ -1,17 +1,30 @@
 //requre some data
-var burgers = require("../models/burger");
+var express = require("express");
+var smile = express();
+var meals = require("../models/burger.js");
 
 
-module.exports = function(app) {
+
 //display all the burgers
-  app.get("/", function(req, res) {
-  
-    res.render("index", {burgers: burgers});
-});
+  smile.get("/", function(req, res) {
 
-// add to the people
-  app.post("/:id", function(reqest, response) {
-  	burgers(request.params.id);
+  	meals.allOfThem(function(data) {
+        res.render("index", {burgers: data});
+    });
+  });
+
+  smile.post("/", function(req, res) {
+  	meals.insertMeat([req.body.burger], function(){
+  		res.redirect("/");
+  	})
+  })
+
+// add to the burgers
+  smile.put("/:id", function(request, response) {
+  	meals.updateMeat(
+  		request.body.devoured, request.params.id, function() {
+  			response.redirect("/");
+  		});
 	});
 
-};
+module.exports = smile;

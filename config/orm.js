@@ -1,42 +1,35 @@
 var connection = require("./connection.js");
 
 var orm = {
-  selectAllMade: function(whatToSelect, tableInput) {
-    var queryString = "SELECT ?? FROM ?? WHERE bevoured = 0";
-    connection.query(queryString, [whatToSelect, tableInput], function(err, result) {
+  selectAll: function(whatToSelect, cb) {
+    var queryString = "SELECT * FROM ??";
+    connection.query(queryString, [whatToSelect], function(err, result) {
       if (err) {
         throw err;
       }
-      console.log(result);
+      cb(result)
+      console.log("all The burgers!");
     });
   },
-  selectAllEaten: function(whatToSelect, tableInput) {
-    var queryString = "SELECT ?? FROM ?? WHERE bevoured = 1";
-    connection.query(queryString, [whatToSelect, tableInput], function(err, result) {
+  insertOne: function(tableInput, colName, aVal, cb ) {
+    var queryString = "INSERT INTO ?? (?) values (?)";
+    connection.query(queryString, [tableInput, colName, aVal], function(err, result) {
       if (err) {
         throw err;
       }
-      console.log(result);
+      cb(result)
+      console.log("New Burger Added!");
     });
   },
-  insertOne: function(tableInput) {
-    var queryString = "INSERT INTO burgers (burger_name) values (?)";
+  updateOne: function(tableInput, colName, newInput, idCol, pagesId, cb) {
+    var queryString = "UPDATE ?? SET ?? = ? WHERE ??=?";
 
-    console.log(queryString);
-
-    connection.query(queryString, [tableInput], function(err, result) {
-      console.log(result);
-    });
-  },
-  updateOne: function(whatToSelect, tableOne, tableTwo, onTableOneCol, onTableTwoCol) {
-    var queryString = "SELECT ?? FROM ?? AS tOne";
-    queryString = queryString + " LEFT JOIN ?? AS tTwo";
-    queryString = queryString + " ON tOne.?? = tTwo.??";
-
-    console.log(queryString);
-
-    connection.query(queryString, [whatToSelect, tableOne, tableTwo, onTableOneCol, onTableTwoCol], function(err, result) {
-      console.log(result);
+    connection.query(queryString, [tableInput, colName, newInput, idCol, pagesId], function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result)
+      console.log("Updated a burger!");
     });
   }
 };
