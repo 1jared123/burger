@@ -9,14 +9,14 @@
       <!-- Pass in data from burger_controller.js -->
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 all-burgers">
         <!-- get all uneaten burgers -->
             {{#each burgers}}
               {{#unless this.devoured}}
                     <form action="/{{this.id}}?_method=PUT" method="POST">
                         <p class="uneaten">{{this.id}}. {{this.burger_name}} {{ this.date}}
                         <input type="hidden" name="devoured" value="1">
-                        <button class="btn-primary" type="submit">Eat It!!!</button></p>
+                        <button class="btn-warning" type="submit">Eat It!!!</button></p>
                     </form>
                 {{/unless}}
             {{/each}}

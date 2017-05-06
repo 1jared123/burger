@@ -1,19 +1,9 @@
-li {
-  padding: 5px;
-  margin: 5px;
-  background: #faebd7;
+body {
+	padding: 10px;
 }
 
-.label {
-  font-weight: bold;
+.all-burgers {
+	background-color: blue;
+	font-weight: 10px;
 }
 
-.create-update-form {
-  padding: 5px;
-  margin: 5px;
-  background: aqua;
-}
-
-.form-group {
-  margin-bottom: 5px;
-}
