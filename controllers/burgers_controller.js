@@ -10,13 +10,14 @@ smile.get("/", function(req, res) {
   });
 });
 
+// add the new burger
 smile.post("/", function(req, res) {
   meals.insertMeat([req.body.burger], function() {
     res.redirect("/");
   });
 });
 
-// add to the burgers
+// eat the burgers
 smile.put("/:id", function(request, response) {
   meals.updateMeat(request.body.devoured, request.params.id, function() {
     response.redirect("/");
